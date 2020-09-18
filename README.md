@@ -1,0 +1,2 @@
+# Django-Trial
+Trial project
