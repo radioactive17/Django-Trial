@@ -5,8 +5,8 @@ class EndUser(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     email = models.EmailField()
     age = models.IntegerField()
-    image = models.ImageField(upload_to = 'users/upload/')
+    image = models.ImageField(upload_to = 'profile_pic', blank = True)
     uid = models.CharField(max_length = 6)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
