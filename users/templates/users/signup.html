@@ -34,7 +34,7 @@
               -->
               {% csrf_token %}
               {{ form|crispy }}
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a class="already" href="#">You already have an account? Login here.</a></form>
+                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a class="already" href="{% url 'Login' %}">You already have an account? Login here.</a></form>
         </div>
     </div>
     <script src="{% static 'users/new1/js/jquery.min.js' %}"></script>

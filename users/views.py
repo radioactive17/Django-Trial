@@ -5,6 +5,9 @@ from .models import EndUser
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth import login as auth_login
+import string
+import random
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -19,7 +22,9 @@ def register(request):
             image = form.cleaned_data['image']
             username = form.cleaned_data['username']
             user = User.objects.get(first_name = first_name, last_name = last_name)
-            enduser = EndUser(user = user, email = email, age = age, image = image)
+            uid = ''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k=6))
+            enduser = EndUser(user = user, email = email, age = age, image = image, uid = uid)
             enduser.save()
             messages.success(request, f'Account created successfully')
             return redirect('Login')
@@ -40,5 +45,12 @@ def user_login(request):
             return redirect('Login')
     return render(request, 'users/login.html')
 
+def user_logout(request):
+    logout(request)
+    return redirect('Login')
+
+@login_required
 def profile(request):
-    return render(request, 'users/home.html')
+    user = request.user
+    enduser = EndUser.objects.get(user = user)
+    return render(request, 'users/profile.html', {'enduser':enduser})
