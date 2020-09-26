@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class incident(models.Model):
-    incident_reporter = models.OneToOneField(User, on_delete = models.CASCADE)
+    incident_reporter = models.ForeignKey(User, on_delete = models.CASCADE)
     #incident detials
     LOCATION_CHOICES = (
         ('ch', 'Corporate Headoffice'),
