@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+    {% block content %}
+
+    <div class="container">
+      <div>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+
+          <div class="form-row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+              <div class="col-12 col-md-4 offset-md-4">
+                <button class="btn btn-dark btn-lg" type="reset">Clear </button>
+                <button class="btn btn-dark btn-lg" style="margin-left:16px;" type="submit">Submit </button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% endblock %}

@@ -21,7 +21,7 @@ def register(request):
             password = form.cleaned_data['password1']
             image = form.cleaned_data['image']
             username = form.cleaned_data['username']
-            user = User.objects.get(first_name = first_name, last_name = last_name)
+            user = User.objects.get(username = username)
             uid = ''.join(random.choices(string.ascii_uppercase +
                              string.digits, k=6))
             enduser = EndUser(user = user, email = email, age = age, image = image, uid = uid)
