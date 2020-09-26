@@ -6,6 +6,9 @@ class incident(models.Model):
     #incident detials
     LOCATION_CHOICES = (
         ('ch', 'Corporate Headoffice'),
+        ('od', 'Operations Department'),
+        ('ws', 'Work Station'),
+        ('ms', 'Marketing Division'),
     )
     location = models.CharField(max_length = 6, choices = LOCATION_CHOICES, default = 'ch')
     description = models.TextField()
@@ -14,13 +17,13 @@ class incident(models.Model):
     incident_location = models.CharField(max_length = 100)
 
     SEVERITY_CHOICES = (
-        ('l', 'Low'),
-        ('m', 'Moderate'),
-        ('h', 'High'),
-        ('e', 'Extreme'),
+        ('mi', 'Mild'),
+        ('mo', 'Moderate'),
+        ('s', 'Severe'),
+        ('f', 'Fatal'),
     )
-    initial_severity = models.CharField(max_length = 1, choices = SEVERITY_CHOICES, default = 'm')
+    initial_severity = models.CharField(max_length = 2, choices = SEVERITY_CHOICES, default = 'mo')
     suspected_cause = models.TextField()
     immediate_action_taken = models.TextField()
 
-    sub_incident_types = models.CharField(max_length = 3)
+    sub_incident_types = models.CharField(max_length = 100)

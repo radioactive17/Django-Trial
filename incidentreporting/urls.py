@@ -5,5 +5,6 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('incident-reporting/form', views.incidentreporting_form, name = 'Incident-Reporting-Form'),
+    path('dashboard', views.dashboard, name = 'Dashboard'),
+    path('incident/reporting/', views.incidentreporting, name = 'Incident-Reporting'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

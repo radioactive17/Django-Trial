@@ -40,7 +40,8 @@ def user_login(request):
         user = authenticate(request,username = username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('Profile')
+            messages.success(request, f"Welcome {user.get_full_name()}, you are now logged in.")
+            return redirect('Dashboard')
         else:
             return redirect('Login')
     return render(request, 'users/login.html')
